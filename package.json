@@ -6,7 +6,9 @@
     "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
-    "start": "node __sapper__/build"
+    "start": "node __sapper__/build",
+    "netlify:build": "run-p netlify:build:**",
+    "netlify:build:app": "sapper export"
   },
   "dependencies": {
     "compression": "^1.7.1",
@@ -23,7 +25,7 @@
     "@rollup/plugin-babel": "^5.0.0",
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
-    "@rollup/plugin-replace": "^2.2.0",
+    "@rollup/plugin-replace": "^2.4.0",
     "@rollup/plugin-url": "^5.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-svelte": "^7.0.0",
