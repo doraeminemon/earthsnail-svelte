@@ -8,6 +8,7 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
+import sveltePreprocess from "svelte-preprocess";
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -28,6 +29,17 @@ export default {
 				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
 			svelte({
+				preprocess: sveltePreprocess({
+					// https://github.com/kaisermann/svelte-preprocess/#user-content-options
+					sourceMap: dev,
+					postcss: {
+						plugins: [
+							require("tailwindcss"),
+							// require("autoprefixer"),
+							// require("postcss-nesting")
+						],
+					},
+				}),
 				compilerOptions: {
 					dev,
 					hydratable: true
