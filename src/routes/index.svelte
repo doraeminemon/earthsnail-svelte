@@ -1,11 +1,11 @@
 <script>
 	import { onMount } from "svelte";
-	let L;
 	import MapToolbar from "./MapToolbar.svelte";
 	const lng = 106.71;
 	const lat = 10.76;
 	const zoom = 13;
 	const initialView = [lat, lng];
+	let L;
 	let mapElement;
 	let searchText;
 	let map;
