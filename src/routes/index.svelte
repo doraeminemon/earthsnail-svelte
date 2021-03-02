@@ -5,10 +5,13 @@
 	const lng = 106.71;
 	const lat = 10.76;
 	const zoom = 13;
+	const initialView = [lat, lng];
 	let mapElement;
 	let searchText;
 	let map;
-	const initialView = [lat, lng];
+	let toolbar = {};
+	let toolbarComponent;
+
 	function createMap(container) {
 		let m = L.map(container, { preferCanvas: true }).setView(initialView, zoom);
 		L.tileLayer(
@@ -23,17 +26,7 @@
 		return m;
 	}
 
-	let toolbar = {};
-	let toolbarComponent;
-
-	function resizeMap() {
-		if (map) {
-			map.invalidateSize();
-		}
-	}
-
-	async function mapAction(container) {
-		L = await import("leaflet");
+	function createToolbar() {
 		toolbar = L.control({ position: "topright" });
 		toolbar.onAdd = (map) => {
 			let div = L.DomUtil.create("div");
@@ -57,7 +50,13 @@
 				toolbarComponent = null;
 			}
 		};
+	}
 
+	const resizeMap = () => map && map.invalidateSize();
+
+	async function mapAction(container) {
+		L = await import("leaflet");
+		createToolbar();
 		map = createMap(container);
 		toolbar.addTo(map);
 
@@ -80,10 +79,7 @@
 		};
 	}
 
-	onMount(async () => {
-		console.log({ mapElement });
-		await mapAction(mapElement);
-	});
+	onMount(async () => mapAction(mapElement));
 </script>
 
 <svelte:window on:resize={resizeMap} />
