@@ -85,7 +85,7 @@
 <svelte:window on:resize={resizeMap} />
 
 <svelte:head>
-	<title>Thông tin địa ốc</title>
+	<title>Cà phê ở đâu ?</title>
 	<link
 		rel="stylesheet"
 		href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
