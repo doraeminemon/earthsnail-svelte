@@ -17,10 +17,10 @@
 		rel="stylesheet"
 	/>
 </svelte:head>
-<h1 class="p-2 text-lg text-center bg-crayola text-maize">Cà Fê ở Đâu ?</h1>
+<h1 class="p-2 title">Cà Fê ở Đâu ?</h1>
 <VirtualList class="flex w-screen h-80" items={coffeeShops} let:item>
 	<div
-		class="flex max-w-md mx-auto overflow-hidden bg-white border-b-2 border-gray-400 md:max-w-2xl"
+		class="flex max-w-md px-4 mx-auto overflow-hidden bg-white border-b-2 border-gray-400 md:max-w-2xl"
 	>
 		<div class="flex-row py-4 pr-2">
 			<h1>{item.contact.instagram}</h1>
@@ -54,9 +54,13 @@
 	/>
 </div>
 
-<style>
+<style lang="postcss">
 	:root {
 		--oxford: "#011936";
+	}
+
+	h1.title {
+		@apply text-lg text-center bg-oxford text-maize;
 	}
 	p,
 	h1,
