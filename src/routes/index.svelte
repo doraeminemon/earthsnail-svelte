@@ -17,6 +17,7 @@
 		rel="stylesheet"
 	/>
 </svelte:head>
+<h1 class="p-2 text-lg text-center bg-crayola text-maize">Cà Fê ở Đâu ?</h1>
 <VirtualList class="flex w-screen h-80" items={coffeeShops} let:item>
 	<div
 		class="flex max-w-md mx-auto overflow-hidden bg-white border-b-2 border-gray-400 md:max-w-2xl"
@@ -43,27 +44,32 @@
 	</div>
 </VirtualList>
 <div
-	class="fixed w-full p-2 bg-white border-t-2 border-gray-400 search-bar"
+	class="fixed w-full p-2 bg-white border-2 border-gray-600 search-bar"
 	style="bottom:0px; left:0px;z-index:2"
 >
 	<input
-		class="w-full h-8 pl-2 border-2 border-gray-600"
+		class="w-full h-8 px-4 text-base"
 		type="text"
-		placeholder="Tìm kiếm theo chữ viết tắt.V.D: P: 40k, L: Q3"
+		placeholder="Tìm kiếm v tên hoặc tt khác P: 40k, L: Q3"
 	/>
 </div>
 
 <style>
-	p {
+	:root {
+		--oxford: "#011936";
+	}
+	p,
+	h1,
+	input {
 		font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
 			Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
 			sans-serif;
+		color: var(--oxford);
+	}
+	p {
 		font-weight: 400;
 	}
 	h1 {
-		font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
-			Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-			sans-serif;
 		font-weight: 600;
 	}
 </style>

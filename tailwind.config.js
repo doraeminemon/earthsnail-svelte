@@ -1,4 +1,5 @@
 // tailwind.config.js
+const colors = require('tailwindcss/colors')
 const isProduction = !process.env.ROLLUP_WATCH; // or some other env var like NODE_ENV
 module.exports = {
   // only needed in Tailwind 1.0 for tailwind 2.0 compat
@@ -6,6 +7,17 @@ module.exports = {
   //     purgeLayersByDefault: true, 
   //     removeDeprecatedGapUtilities: true,
   //   },
+  theme: {
+    colors: {
+      ...colors,
+      maize: '#FECC4F',
+      crayola: '#ED254E',
+      oxford: '#011936',
+    },
+  },
+  fontFamily: {
+    sans: ['Space Grotesk', 'sans-serif']
+  },
   plugins: [
     // for tailwind UI users only
     require('@tailwindcss/ui'),
