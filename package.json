@@ -28,6 +28,7 @@
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@rollup/plugin-replace": "^2.4.0",
     "@rollup/plugin-url": "^5.0.0",
+    "@sveltejs/svelte-virtual-list": "^3.0.1",
     "autoprefixer": "^10.2.5",
     "leaflet": "^1.7.1",
     "postcss": "^8.2.7",

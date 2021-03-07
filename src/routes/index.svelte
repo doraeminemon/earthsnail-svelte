@@ -1,112 +1,7 @@
 <script>
-	import { onMount } from "svelte";
-	import MapToolbar from "./MapToolbar.svelte";
-	import MapSearchbox from "./MapSearchbox.svelte";
-	const lng = 106.71;
-	const lat = 10.76;
-	const zoom = 13;
-	const initialView = [lat, lng];
-	let L;
-	let mapElement;
-	let searchText;
-	let map;
-	let toolbar = {};
-	let toolbarComponent;
-	let searchBox;
-	let searchBarComponent;
-
-	function createMap(container) {
-		let m = L.map(container, { preferCanvas: true }).setView(initialView, zoom);
-		L.tileLayer(
-			"https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-			{
-				attribution: `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>`,
-				subdomains: "abcd",
-			}
-		).addTo(m);
-
-		return m;
-	}
-
-	function createSearchbox() {
-		searchBox = L.control({ position: "bottomright" });
-		searchBox.onAdd = () => {
-			let div = L.DomUtil.create("div");
-			searchBarComponent = new MapSearchbox({
-				target: div,
-				props: {},
-			});
-
-			return div;
-		};
-
-		searchBox.onRemove = () => {
-			if (searchBarComponent) {
-				searchBarComponent.$destroy();
-				searchBarComponent = null;
-			}
-		};
-	}
-
-	function createToolbar() {
-		toolbar = L.control({ position: "topright" });
-		toolbar.onAdd = (map) => {
-			let div = L.DomUtil.create("div");
-			toolbarComponent = new MapToolbar({
-				target: div,
-				props: {},
-			});
-
-			toolbarComponent.$on("click-eye", ({ detail }) => (eye = detail));
-			toolbarComponent.$on("click-lines", ({ detail }) => (lines = detail));
-			toolbarComponent.$on("click-reset", () => {
-				map.setView(initialView, 5, { animate: true });
-			});
-
-			return div;
-		};
-
-		toolbar.onRemove = () => {
-			if (toolbarComponent) {
-				toolbarComponent.$destroy();
-				toolbarComponent = null;
-			}
-		};
-	}
-
-	const resizeMap = () => map && map.invalidateSize();
-
-	async function mapAction(container) {
-		L = await import("leaflet");
-		createToolbar();
-		createSearchbox();
-		map = createMap(container);
-		toolbar.addTo(map);
-		searchBox.addTo(map);
-
-		// markerLayers = L.layerGroup()
-		// for(let location of markerLocations) {
-		// 	let m = createMarker(location);
-		// 	markerLayers.addLayer(m);
-		// }
-
-		// lineLayers = createLines();
-
-		// markerLayers.addTo(map);
-		// lineLayers.addTo(map);
-		return {
-			destroy: () => {
-				toolbar.remove();
-				map.remove();
-				map = null;
-			},
-		};
-	}
-
-	onMount(async () => mapAction(mapElement));
+	import VirtualList from "@sveltejs/svelte-virtual-list";
+	import coffeeShops from "../coffeesaigon.js";
 </script>
-
-<svelte:window on:resize={resizeMap} />
 
 <svelte:head>
 	<title>Cà phê ở đâu ?</title>
@@ -116,20 +11,59 @@
 		integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
 		crossorigin=""
 	/>
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap"
+		rel="stylesheet"
+	/>
 </svelte:head>
-<div class="map" style="width:100vw; height:100vh" bind:this={mapElement} />
+<VirtualList class="flex w-screen h-80" items={coffeeShops} let:item>
+	<div
+		class="flex max-w-md mx-auto overflow-hidden bg-white border-b-2 border-gray-400 md:max-w-2xl"
+	>
+		<div class="flex-row py-4 pr-2">
+			<h1>{item.contact.instagram}</h1>
+			<div class="flex pt-2 md:flex">
+				<div class="flex-1 md:flex-shrink-0">
+					<img
+						class="object-cover h-48 rounded-sm md:w-48"
+						src={item.photos[0]}
+						alt="coffee shop"
+						style="min-width: 40%"
+					/>
+				</div>
+				<div class="flex-1 px-4">
+					<p>🆔: {item.photo_credits}</p>
+					<p>🕙: {item.opening_days}</p>
+					<p>💰: {item.price_range}</p>
+					<p>📍: {item.location}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</VirtualList>
+<div
+	class="fixed w-full p-2 bg-white border-t-2 border-gray-400 search-bar"
+	style="bottom:0px; left:0px;z-index:2"
+>
+	<input
+		class="w-full h-8 pl-2 border-2 border-gray-600"
+		type="text"
+		placeholder="Tìm kiếm theo chữ viết tắt.V.D: P: 40k, L: Q3"
+	/>
+</div>
 
 <style>
-	.map :global(.marker-text) {
-		width: 100%;
-		text-align: center;
-		font-weight: 600;
-		background-color: #444;
-		color: #eee;
-		border-radius: 0.5rem;
+	p {
+		font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
+			Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+			sans-serif;
+		font-weight: 400;
 	}
-	.map :global(.map-marker) {
-		width: 30px;
-		transform: translateX(-50%) translateY(-25%);
+	h1 {
+		font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
+			Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+			sans-serif;
+		font-weight: 600;
 	}
 </style>
