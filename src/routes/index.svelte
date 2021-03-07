@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Cà phê ở đâu ?</title>
+	<title>nghiện là dở bạn ơi</title>
 	<link
 		rel="stylesheet"
 		href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -17,7 +17,7 @@
 		rel="stylesheet"
 	/>
 </svelte:head>
-<h1 class="p-2 title">Cà Fê ở Đâu ?</h1>
+<h1 class="p-2 title">Ún Gì ? Coffee</h1>
 <VirtualList class="flex w-screen h-80" items={coffeeShops} let:item>
 	<div
 		class="flex max-w-md px-4 mx-auto overflow-hidden bg-white border-b-2 border-gray-400 md:max-w-2xl"
