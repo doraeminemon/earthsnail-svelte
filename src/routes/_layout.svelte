@@ -1,4 +1,8 @@
-<style global lang="postcss">
+<main>
+	<slot />
+</main>
+
+<style global>
 	main {
 		position: relative;
 		background-color: white;
@@ -8,11 +12,8 @@
 		overflow-y: hidden;
 	}
 
-	@tailwind base;
-	@tailwind components;
-  @tailwind utilities;
+	@import "tailwindcss/base";
+	@import "tailwindcss/components";
+	@import "tailwindcss/utilities";
+	/* @tailwind forms; */
 </style>
-
-<main>
-	<slot></slot>
-</main>

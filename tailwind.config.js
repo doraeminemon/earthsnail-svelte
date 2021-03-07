@@ -25,6 +25,6 @@ module.exports = {
         .concat(broadMatchesWithoutTrailingSlash)
       return matches
     },
-    enabled: isProduction // disable purge in dev
+    enabled: false // disable purge in dev
   },
 };

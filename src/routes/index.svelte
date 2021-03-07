@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import MapToolbar from "./MapToolbar.svelte";
+	import MapSearchbox from "./MapSearchbox.svelte";
 	const lng = 106.71;
 	const lat = 10.76;
 	const zoom = 13;
@@ -11,19 +12,40 @@
 	let map;
 	let toolbar = {};
 	let toolbarComponent;
+	let searchBox;
+	let searchBarComponent;
 
 	function createMap(container) {
 		let m = L.map(container, { preferCanvas: true }).setView(initialView, zoom);
 		L.tileLayer(
 			"https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
 			{
-				attribution: `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
-	        &copy;<a href="https://carto.com/attributions" target="_blank">CARTO</a>`,
+				attribution: `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>`,
 				subdomains: "abcd",
 			}
 		).addTo(m);
 
 		return m;
+	}
+
+	function createSearchbox() {
+		searchBox = L.control({ position: "bottomright" });
+		searchBox.onAdd = () => {
+			let div = L.DomUtil.create("div");
+			searchBarComponent = new MapSearchbox({
+				target: div,
+				props: {},
+			});
+
+			return div;
+		};
+
+		searchBox.onRemove = () => {
+			if (searchBarComponent) {
+				searchBarComponent.$destroy();
+				searchBarComponent = null;
+			}
+		};
 	}
 
 	function createToolbar() {
@@ -57,8 +79,10 @@
 	async function mapAction(container) {
 		L = await import("leaflet");
 		createToolbar();
+		createSearchbox();
 		map = createMap(container);
 		toolbar.addTo(map);
+		searchBox.addTo(map);
 
 		// markerLayers = L.layerGroup()
 		// for(let location of markerLocations) {
@@ -93,14 +117,6 @@
 		crossorigin=""
 	/>
 </svelte:head>
-<div class="fixed search-bar p-2 bg-white rounded flex">
-	<input
-		class="w-full"
-		type="text"
-		bind:value={searchText}
-		placeholder="Tìm kiếm quận huyện"
-	/>
-</div>
 <div class="map" style="width:100vw; height:100vh" bind:this={mapElement} />
 
 <style>

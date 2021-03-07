@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "coffee",
+  "description": "coffee shop finder",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
@@ -28,7 +28,10 @@
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@rollup/plugin-replace": "^2.4.0",
     "@rollup/plugin-url": "^5.0.0",
+    "autoprefixer": "^10.2.5",
     "leaflet": "^1.7.1",
+    "postcss": "^8.2.7",
+    "postcss-load-config": "^3.0.1",
     "rollup": "^2.3.4",
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
