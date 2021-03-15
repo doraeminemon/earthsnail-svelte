@@ -1,6 +1,18 @@
 <script>
 	import VirtualList from "@sveltejs/svelte-virtual-list";
-	import coffeeShops from "../coffeesaigon.js";
+	import { onMount } from "svelte";
+
+	let coffeeShops = [];
+
+	onMount(async () => {
+		await fetch(
+			"https://doraeminemon.api.stdlib.com/gsheets-database-example/select/coffee-shops"
+		)
+			.then((r) => r.json())
+			.then((data) => {
+				coffeeShops = data;
+			});
+	});
 </script>
 
 <svelte:head>
@@ -17,18 +29,17 @@
 		class="flex max-w-md px-4 mx-auto overflow-hidden bg-white border-b-2 border-gray-400 md:max-w-2xl"
 	>
 		<div class="flex-row py-4 pr-2">
-			<h1>{item.contact.instagram}</h1>
+			<h1>{item.Name}</h1>
 			<div class="flex pt-2 md:flex">
 				<div class="flex-1 md:flex-shrink-0">
 					<img
 						class="object-cover h-48 rounded-sm md:w-48"
-						src={item.photos[0]}
+						src={item.photos_1}
 						alt="coffee shop"
 						style="min-width: 40%"
 					/>
 				</div>
 				<div class="flex-1 px-4">
-					<p>🆔: {item.photo_credits}</p>
 					<p>🕙: {item.opening_days}</p>
 					<p>💰: {item.price_range}</p>
 					<a href={item.location_link}>
