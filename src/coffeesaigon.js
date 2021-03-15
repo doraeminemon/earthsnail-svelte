@@ -9,7 +9,7 @@ const coffeeShops = [
     opening_days: "Everyday, 8:00-21:00",
     price_range: "60k-130k",
     location: "27 Ngô Đức Kế, D1",
-    location_link: "",
+    location_link: "https://goo.gl/maps/Lpxu3SBRXsFp7Fvj9",
     contact: {
       instagram: "@the.workshop.coffee",
     },
@@ -25,8 +25,7 @@ const coffeeShops = [
     opening_days: "Mon-Sun, 7:00-21:00",
     price_range: "40k-50k",
     location: "19A Huỳnh Tịnh Của, P8, Q3",
-    location_link: "",
-    parking_options: "Gửi xe đối diện quán - nhớ khoá cổ xe nha 😊.",
+    location_link: "https://goo.gl/maps/Lpxu3SBRXsFp7Fvj9",
     contact: {
       instagram: "@beanbox",
     },
@@ -43,8 +42,7 @@ const coffeeShops = [
     opening_days: "Mon-Sun, 7:00-21:00",
     price_range: "40k-50k",
     location: "19A Huỳnh Tịnh Của, P8, Q3",
-    location_link: "",
-    parking_options: "Gửi xe đối diện quán - nhớ khoá cổ xe nha 😊.",
+    location_link: "https://goo.gl/maps/Lpxu3SBRXsFp7Fvj9",
     contact: {
       instagram: "@beanbox",
     },
@@ -61,8 +59,7 @@ const coffeeShops = [
     opening_days: "Mon-Sun, 7:00-21:00",
     price_range: "40k-50k",
     location: "19A Huỳnh Tịnh Của, P8, Q3",
-    location_link: "",
-    parking_options: "Gửi xe đối diện quán - nhớ khoá cổ xe nha 😊.",
+    location_link: "https://goo.gl/maps/Lpxu3SBRXsFp7Fvj9",
     contact: {
       instagram: "@beanbox",
     },
@@ -78,8 +75,7 @@ const coffeeShops = [
     opening_days: "Mon-Sun, 7:00-21:00",
     price_range: "40k-50k",
     location: "19A Huỳnh Tịnh Của, P8, Q3",
-    location_link: "",
-    parking_options: "Gửi xe đối diện quán - nhớ khoá cổ xe nha 😊.",
+    location_link: "https://goo.gl/maps/Lpxu3SBRXsFp7Fvj9",
     contact: {
       instagram: "@beanbox",
     },

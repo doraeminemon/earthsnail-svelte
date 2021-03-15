@@ -31,7 +31,9 @@
 					<p>🆔: {item.photo_credits}</p>
 					<p>🕙: {item.opening_days}</p>
 					<p>💰: {item.price_range}</p>
-					<p>📍: {item.location}</p>
+					<a href={item.location_link}>
+						<p>📍: {item.location}</p>
+					</a>
 				</div>
 			</div>
 		</div>
