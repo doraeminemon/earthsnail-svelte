@@ -31,12 +31,15 @@
 		<div class="flex-row py-4 pr-2">
 			<h1>{item.Name}</h1>
 			<div class="flex pt-2 md:flex">
-				<div class="flex-1 md:flex-shrink-0">
+				<div class="flex-1 md:flex-shrink-0" style="width:216px;height:216px;">
 					<img
 						class="object-cover h-48 rounded-sm md:w-48"
 						src={item.photos_1}
 						alt="coffee shop"
 						style="min-width: 40%"
+						loading="lazy"
+						width="216"
+						height="216"
 					/>
 				</div>
 				<div class="flex-1 px-4">
